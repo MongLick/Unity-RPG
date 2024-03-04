@@ -48,6 +48,8 @@ public class SceneManager : MonoBehaviour
 
         Time.timeScale = 0f;
         loadingBar.gameObject.SetActive(true);
+        BaseScene prevScene = GetCurScene();
+        prevScene.SceneSave();
         AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
         while (oper.isDone == false)
         {
@@ -58,6 +60,7 @@ public class SceneManager : MonoBehaviour
         //oper.allowSceneActivation = true;
         
         BaseScene curScene = GetCurScene();
+        curScene.SceneLoad();
         yield return curScene.LoadingRoutine();
 
         Time.timeScale = 1f;
@@ -77,5 +80,10 @@ public class SceneManager : MonoBehaviour
     public void SetLoadingBarValue(float value)
     {
         loadingBar.value = value;
+    }
+
+    public int GetCurSceneIndex()
+    {
+        return UnitySceneManager.GetActiveScene().buildIndex;
     }
 }

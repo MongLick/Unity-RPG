@@ -1,0 +1,47 @@
+{
+    "name": "플레이어",
+    "level": 1,
+    "gold": 0,
+    "exp": 0,
+    "sceneSaved": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    "gameSceneData": {
+        "playerPos": {
+            "x": -29.166532516479493,
+            "y": 0.0,
+            "z": -22.000247955322267
+        }
+    }
+}

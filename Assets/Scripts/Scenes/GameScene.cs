@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    [SerializeField] Monster monsterPrefab;
+    [SerializeField] Transform player;
+    [SerializeField] CharacterController playerController;
+    /*[SerializeField] Monster monsterPrefab;
     [SerializeField] Transform spawnrPoint;
-    [SerializeField] int count;
+    [SerializeField] int count;*/
     public override IEnumerator LoadingRoutine()
     {
-        // fake loding
+        /*// fake loding
         yield return new WaitForSecondsRealtime(1f);
         Manager.Scene.SetLoadingBarValue(0.6f);
         Debug.Log("GameScene Load");
@@ -30,10 +32,31 @@ public class GameScene : BaseScene
         }
         Manager.Scene.SetLoadingBarValue(1f);
         yield return new WaitForSecondsRealtime(0.1f);
-        Debug.Log("게임씬 로딩 끝!");
+        Debug.Log("게임씬 로딩 끝!");*/
+
+        yield return null;
     }
     public void ToTitleScene()
     {
         Manager.Scene.LoadScene("TitleScene");
+    }
+
+    public override void SceneSave()
+    {
+        Manager.Data.gameData.gameSceneData.playerPos = player.position;
+        Manager.Data.SaveData();
+    }
+
+    public override void SceneLoad()
+    {
+        if (Manager.Data.gameData.sceneSaved[Manager.Scene.GetCurSceneIndex()] == false)
+        {
+            return;
+        }
+        
+        Manager.Data.LoadData();
+        playerController.enabled = false;
+        player.position = Manager.Data.gameData.gameSceneData.playerPos;
+        playerController.enabled = true;
     }
 }
